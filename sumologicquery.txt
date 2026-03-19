@@ -1,0 +1,8 @@
+* sourceCategory=*
+| parse "*" as endpoint
+| parse "*" as responsetime
+| where endpoint = "/api/data"
+| where responsetime > 3000
+| timeslice 10m
+| count by _timeslice
+| where _count > 5
